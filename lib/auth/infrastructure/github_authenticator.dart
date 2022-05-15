@@ -1,10 +1,11 @@
 import 'package:bootcamp_project_02/auth/domain/auth_failure.dart';
 import 'package:bootcamp_project_02/auth/infrastructure/credentials_storage/credentials_storage.dart';
+import 'package:bootcamp_project_02/core/shared/encoder.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart';
-import 'package:oauth2/oauth2.dart';
 import 'package:http/http.dart' as http;
+import 'package:oauth2/oauth2.dart';
 
 class GitubOAutHttClient extends http.BaseClient {
   final httpClient = http.Client();
@@ -30,7 +31,7 @@ class GithubAuthenticator {
       Uri.parse('https://github.com/login/oauth/acess_token');
   static final redirectUrl = Uri.parse('http://localhost:3000/callback');
   static final scopes = ['read:user', 'repo'];
-  static final revocationUrl =
+  static final revocationEndPoint =
       Uri.parse('https://api.github.com/applications/$clientId/token');
 
   Future<Credentials?> getSignedInCredentials() async {
@@ -87,15 +88,16 @@ class GithubAuthenticator {
     final accessToken = await _credentialsStorage
         .read()
         .then((credentials) => credentials?.accessToken);
+    final usernameAnPass = stringToBase64.encode('$clientId:$clientSecret');
     try {
       await _dio.deleteUri(
-        revocationUrl,
+        revocationEndPoint,
         data: {
           'access_token': accessToken,
         },
         options: Options(
           headers: {
-            'Authorization': 'basic $clientId:$clientSecret',
+            'Authorization': 'basic $usernameAnPass',
           },
         ),
       );
