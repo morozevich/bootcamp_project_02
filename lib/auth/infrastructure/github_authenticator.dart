@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:bootcamp_project_02/auth/domain/auth_failure.dart';
 import 'package:bootcamp_project_02/auth/infrastructure/credentials_storage/credentials_storage.dart';
 import 'package:bootcamp_project_02/core/infraestructure/dio_extensions.dart';
@@ -27,11 +25,11 @@ class GithubAuthenticator {
   GithubAuthenticator(this._credentialsStorage, this._dio);
 
   static const clientId = '1e5ffe4f0037fa5a7ad7';
-  static const clientSecret = 'bf30151eee9f00b91c0627a8e9fe3360bb4d73c5';
+  static const clientSecret = '0432bd96c895a7029f2e773fe7390ec941270f93';
   static final authorizationEndPoint =
       Uri.parse('https://github.com/login/oauth/authorize');
   static final tokenEndPoint =
-      Uri.parse('https://github.com/login/oauth/acess_token');
+      Uri.parse('https://github.com/login/oauth/access_token');
   static final redirectUrl = Uri.parse('http://localhost:3000/callback');
   static final scopes = ['read:user', 'repo'];
   static final revocationEndPoint =
@@ -61,6 +59,7 @@ class GithubAuthenticator {
       authorizationEndPoint,
       tokenEndPoint,
       secret: clientSecret,
+      httpClient: GitubOAutHttClient(),
     );
   }
 
