@@ -13,7 +13,8 @@ class SplashPage extends StatelessWidget {
           children: const [
             Icon(MdiIcons.github, size: 128),
             SizedBox(height: 16),
-            SizedBox(width: 180, child: LinearProgressIndicator())],
+            SizedBox(width: 180, child: LinearProgressIndicator())
+          ],
         ),
       ),
     );

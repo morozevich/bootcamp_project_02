@@ -10,6 +10,7 @@
 //
 // ignore_for_file: type=lint
 
+// ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i5;
 import 'package:flutter/material.dart' as _i6;
 
@@ -27,41 +28,65 @@ class AppRouter extends _i5.RootStackRouter {
   final Map<String, _i5.PageFactory> pagesMap = {
     SplashRoute.name: (routeData) {
       return _i5.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i1.SplashPage());
+        routeData: routeData,
+        child: const _i1.SplashPage(),
+      );
     },
     SignInRoute.name: (routeData) {
       return _i5.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i2.SignInPage());
+        routeData: routeData,
+        child: const _i2.SignInPage(),
+      );
     },
     AuthorizationRoute.name: (routeData) {
       final args = routeData.argsAs<AuthorizationRouteArgs>();
       return _i5.MaterialPageX<dynamic>(
-          routeData: routeData,
-          child: _i3.AuthorizationPage(
-              key: args.key,
-              authorizationUrl: args.authorizationUrl,
-              onAuthorizationCodeRedirectAttempt:
-                  args.onAuthorizationCodeRedirectAttempt));
+        routeData: routeData,
+        child: _i3.AuthorizationPage(
+          key: args.key,
+          authorizationUrl: args.authorizationUrl,
+          onAuthorizationCodeRedirectAttempt:
+              args.onAuthorizationCodeRedirectAttempt,
+        ),
+      );
     },
     StarredRepoRoute.name: (routeData) {
       return _i5.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i4.StarredRepoPage());
-    }
+        routeData: routeData,
+        child: const _i4.StarredRepoPage(),
+      );
+    },
   };
 
   @override
   List<_i5.RouteConfig> get routes => [
-        _i5.RouteConfig(SplashRoute.name, path: '/'),
-        _i5.RouteConfig(SignInRoute.name, path: '/sign-in'),
-        _i5.RouteConfig(AuthorizationRoute.name, path: '/auth'),
-        _i5.RouteConfig(StarredRepoRoute.name, path: '/starred')
+        _i5.RouteConfig(
+          SplashRoute.name,
+          path: '/',
+        ),
+        _i5.RouteConfig(
+          SignInRoute.name,
+          path: '/sign-in',
+        ),
+        _i5.RouteConfig(
+          AuthorizationRoute.name,
+          path: '/auth',
+        ),
+        _i5.RouteConfig(
+          StarredRepoRoute.name,
+          path: '/starred',
+        ),
       ];
 }
 
 /// generated route for
 /// [_i1.SplashPage]
 class SplashRoute extends _i5.PageRouteInfo<void> {
-  const SplashRoute() : super(SplashRoute.name, path: '/');
+  const SplashRoute()
+      : super(
+          SplashRoute.name,
+          path: '/',
+        );
 
   static const String name = 'SplashRoute';
 }
@@ -69,7 +94,11 @@ class SplashRoute extends _i5.PageRouteInfo<void> {
 /// generated route for
 /// [_i2.SignInPage]
 class SignInRoute extends _i5.PageRouteInfo<void> {
-  const SignInRoute() : super(SignInRoute.name, path: '/sign-in');
+  const SignInRoute()
+      : super(
+          SignInRoute.name,
+          path: '/sign-in',
+        );
 
   static const String name = 'SignInRoute';
 }
@@ -77,26 +106,30 @@ class SignInRoute extends _i5.PageRouteInfo<void> {
 /// generated route for
 /// [_i3.AuthorizationPage]
 class AuthorizationRoute extends _i5.PageRouteInfo<AuthorizationRouteArgs> {
-  AuthorizationRoute(
-      {_i6.Key? key,
-      required Uri authorizationUrl,
-      required void Function(Uri) onAuthorizationCodeRedirectAttempt})
-      : super(AuthorizationRoute.name,
-            path: '/auth',
-            args: AuthorizationRouteArgs(
-                key: key,
-                authorizationUrl: authorizationUrl,
-                onAuthorizationCodeRedirectAttempt:
-                    onAuthorizationCodeRedirectAttempt));
+  AuthorizationRoute({
+    _i6.Key? key,
+    required Uri authorizationUrl,
+    required void Function(Uri) onAuthorizationCodeRedirectAttempt,
+  }) : super(
+          AuthorizationRoute.name,
+          path: '/auth',
+          args: AuthorizationRouteArgs(
+            key: key,
+            authorizationUrl: authorizationUrl,
+            onAuthorizationCodeRedirectAttempt:
+                onAuthorizationCodeRedirectAttempt,
+          ),
+        );
 
   static const String name = 'AuthorizationRoute';
 }
 
 class AuthorizationRouteArgs {
-  const AuthorizationRouteArgs(
-      {this.key,
-      required this.authorizationUrl,
-      required this.onAuthorizationCodeRedirectAttempt});
+  const AuthorizationRouteArgs({
+    this.key,
+    required this.authorizationUrl,
+    required this.onAuthorizationCodeRedirectAttempt,
+  });
 
   final _i6.Key? key;
 
@@ -113,7 +146,11 @@ class AuthorizationRouteArgs {
 /// generated route for
 /// [_i4.StarredRepoPage]
 class StarredRepoRoute extends _i5.PageRouteInfo<void> {
-  const StarredRepoRoute() : super(StarredRepoRoute.name, path: '/starred');
+  const StarredRepoRoute()
+      : super(
+          StarredRepoRoute.name,
+          path: '/starred',
+        );
 
   static const String name = 'StarredRepoRoute';
 }
