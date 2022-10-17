@@ -10,7 +10,7 @@ _$_GithubRepoDTO _$$_GithubRepoDTOFromJson(Map<String, dynamic> json) =>
     _$_GithubRepoDTO(
       owner: UserDTO.fromJson(json['owner'] as Map<String, dynamic>),
       name: json['name'] as String,
-      description: json['description'] as String,
+      description: _descriptionFromJson(json['description']),
       stargazersCount: json['stargazers_count'] as int,
     );
 

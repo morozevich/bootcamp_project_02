@@ -24,7 +24,7 @@ class _$GithubRepoDTOTearOff {
   _GithubRepoDTO call(
       {required UserDTO owner,
       required String name,
-      required String description,
+      @JsonKey(fromJson: _descriptionFromJson) required String description,
       @JsonKey(name: 'stargazers_count') required int stargazersCount}) {
     return _GithubRepoDTO(
       owner: owner,
@@ -46,6 +46,7 @@ const $GithubRepoDTO = _$GithubRepoDTOTearOff();
 mixin _$GithubRepoDTO {
   UserDTO get owner => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _descriptionFromJson)
   String get description => throw _privateConstructorUsedError;
   @JsonKey(name: 'stargazers_count')
   int get stargazersCount => throw _privateConstructorUsedError;
@@ -64,7 +65,7 @@ abstract class $GithubRepoDTOCopyWith<$Res> {
   $Res call(
       {UserDTO owner,
       String name,
-      String description,
+      @JsonKey(fromJson: _descriptionFromJson) String description,
       @JsonKey(name: 'stargazers_count') int stargazersCount});
 
   $UserDTOCopyWith<$Res> get owner;
@@ -124,7 +125,7 @@ abstract class _$GithubRepoDTOCopyWith<$Res>
   $Res call(
       {UserDTO owner,
       String name,
-      String description,
+      @JsonKey(fromJson: _descriptionFromJson) String description,
       @JsonKey(name: 'stargazers_count') int stargazersCount});
 
   @override
@@ -176,7 +177,7 @@ class _$_GithubRepoDTO extends _GithubRepoDTO {
   const _$_GithubRepoDTO(
       {required this.owner,
       required this.name,
-      required this.description,
+      @JsonKey(fromJson: _descriptionFromJson) required this.description,
       @JsonKey(name: 'stargazers_count') required this.stargazersCount})
       : super._();
 
@@ -188,6 +189,7 @@ class _$_GithubRepoDTO extends _GithubRepoDTO {
   @override
   final String name;
   @override
+  @JsonKey(fromJson: _descriptionFromJson)
   final String description;
   @override
   @JsonKey(name: 'stargazers_count')
@@ -237,7 +239,7 @@ abstract class _GithubRepoDTO extends GithubRepoDTO {
   const factory _GithubRepoDTO(
           {required UserDTO owner,
           required String name,
-          required String description,
+          @JsonKey(fromJson: _descriptionFromJson) required String description,
           @JsonKey(name: 'stargazers_count') required int stargazersCount}) =
       _$_GithubRepoDTO;
   const _GithubRepoDTO._() : super._();
@@ -250,6 +252,7 @@ abstract class _GithubRepoDTO extends GithubRepoDTO {
   @override
   String get name => throw _privateConstructorUsedError;
   @override
+  @JsonKey(fromJson: _descriptionFromJson)
   String get description => throw _privateConstructorUsedError;
   @override
   @JsonKey(name: 'stargazers_count')
