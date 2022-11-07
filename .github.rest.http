@@ -1,3 +1,4 @@
 GET https://api.github.com/user/starred?page=0
 Accept: application/json
 Authorization: token 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
+# If-None-Match: 
