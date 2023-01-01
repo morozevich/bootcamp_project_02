@@ -16,7 +16,7 @@ class StarredReposRemoteService {
     int page,
   ) async {
     final token = 'test';
-    final accept = 'accept';
+    final accept = 'application/vdn.github.v3.html+json';
     final requestUri = Uri.https(
       'api.github.com',
       '/user/starred',
@@ -37,20 +37,27 @@ class StarredReposRemoteService {
         ),
       );
       if (response.statusCode == 304) {
-        return const RemoteResponse.noModified();
+        return RemoteResponse.noModified(
+          maxPage: previousHeaders?.link?.maxPage ?? 0,
+        );
       } else if (response.statusCode == 200) {
         final gitHubHeaders = GithubHeaders.parse(response);
         await _githuhHeadersCache.saveHeaders(requestUri, gitHubHeaders);
         final converterData = (response.data as List<dynamic>)
             .map((e) => GithubRepoDTO.fromJson(e as Map<String, dynamic>))
             .toList();
-        return RemoteResponse.withNewData(converterData);
+        return RemoteResponse.withNewData(
+          converterData,
+          maxPage: gitHubHeaders.link?.maxPage ?? 1,
+        );
       } else {
         throw RestApiException(response.statusCode);
       }
     } on DioError catch (e) {
       if (e.isNoConnectionError) {
-        return const RemoteResponse.noConnection();
+        return RemoteResponse.noConnection(
+          maxPage: previousHeaders?.link?.maxPage ?? 0,
+        );
       } else if (e.response != null) {
         throw RestApiException(e.response!.statusCode);
       } else {
